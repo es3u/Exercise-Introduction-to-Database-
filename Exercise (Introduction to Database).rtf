@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Oblique;}
+{\colortbl;\red255\green255\blue255;\red195\green123\blue90;\red23\green23\blue26;\red174\green176\blue183;
+\red185\green101\blue173;\red38\green157\blue169;\red89\green158\blue96;\red254\green187\blue91;\red103\green107\blue114;
+\red72\green151\blue245;}
+{\*\expandedcolortbl;;\csgenericrgb\c76471\c48235\c35294;\csgenericrgb\c9020\c9020\c10196;\csgenericrgb\c68235\c69020\c71765;
+\csgenericrgb\c72549\c39608\c67843;\csgenericrgb\c14902\c61569\c66275;\csgenericrgb\c34902\c61961\c37647;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c40392\c41961\c44706;
+\csgenericrgb\c28235\c59216\c96078;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 create database \cf4 store;\
+\
+\cf2 create table \cf4 countries(\
+    \cf5 code \cf2 int primary key \cf4 ,\
+    \cf5 name \cf2 varchar\cf4 (\cf6 20\cf4 ) \cf2 not null unique \cf4 ,\
+    \cf5 continent_name \cf2 varchar\cf4 (\cf6 20\cf4 )\cf2 not null\
+\cf4 );\
+\
+\cf2 insert  into \cf4 countries \cf2 values \cf4 (\cf6 1 \cf4 , \cf7 'essa' \cf4 , \cf7 'saudi'\cf4 );\
+\cf2 update  \cf4 countries \cf2 set \cf5 name \cf4 = \cf7 'obaid ' \cf2 where \cf5 code\cf4 =\cf6 1\cf4 ;\
+\
+\cf2 select \cf8 * \cf2 from \cf4 countries ;\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf9 #----------------------------------------------------------------------\
+\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf2 create table \cf4 users(\
+    \cf5 id \cf2 int primary key \cf4 ,\
+    \cf5 full_name \cf2 varchar\cf4 (\cf6 20\cf4 ) \cf2 not null \cf4 ,\
+    \cf5 email \cf2 varchar\cf4 (\cf6 20\cf4 ) \cf2 not null unique \cf4 ,\
+    \cf5 gender \cf2 varchar\cf4 (\cf6 1\cf4 ) \cf2 check \cf4 ( \cf5 gender\cf4 =\cf7 'm' \cf2 or \cf5 gender\cf4 =\cf7 'f' \cf4 ) ,\
+    \cf5 date_of_birth \cf2 varchar\cf4 (\cf6 15\cf4 ) \cf2 not null \cf4 ,\
+    \cf5 created_at \cf2 datetime DEFAULT 
+\f1\i \cf10 CURRENT_TIMESTAMP
+\f0\i0 \cf4 ,\
+    \cf5 country_code \cf2 int \cf4 ,\
+    \cf2 foreign key \cf4 (\cf5 country_code\cf4 ) \cf2 references \cf4 countries(\cf5 code\cf4 )\
+);\
+\
+\cf2 insert into \cf4 users \cf2 value \cf4 (\cf6 1\cf4 ,\cf7 'essa almutiri' \cf4 , \cf7 'essa@hotmail.com'\cf4 ,\cf7 'm'\cf4 ,\cf7 '2000/03/15'\cf4 ,
+\f1\i \cf10 CURRENT_TIMESTAMP
+\f0\i0 \cf4 ,\cf6 1 \cf4 );\
+\cf2 insert into \cf4 users (\cf5 id\cf4 , \cf5 full_name\cf4 , \cf5 email\cf4 , \cf5 gender\cf4 ,\cf5 date_of_birth\cf4 , \cf5 created_at\cf4 , \cf5 country_code\cf4 )\cf2 value \cf4 (\cf6 2\cf4 ,\cf7 'essa almutiri' \cf4 , \cf7 'essa1@hotmail.com'\cf4 ,\cf7 'm'\cf4 ,\cf7 '1990/05/15'\cf4 , 
+\f1\i \cf10 CURRENT_TIMESTAMP
+\f0\i0 \cf4 ,\cf6 1 \cf4 );\
+\cf2 update  \cf4 users \cf2 set \cf5 full_name \cf4 = \cf7 'obaid almutiri' \cf2 where \cf5 id\cf4 =\cf6 2\cf4 ;\
+\
+\
+\cf2 select \cf8 * \cf2 from \cf4 users ;\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf9 #----------------------------------------------------------------------\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf2 create table \cf4 orders(\
+    \cf5 id \cf2 int primary key \cf4 ,\
+    \cf5 user_id \cf2 int \cf4 ,\
+    \cf5 status \cf2 varchar\cf4 (\cf6 6\cf4 ) \cf2 check \cf4 ( \cf5 status\cf4 =\cf7 'start' \cf2 or \cf5 status\cf4 =\cf7 'finish' \cf4 )  ,\
+    \cf5 created_at \cf2 datetime default 
+\f1\i \cf10 CURRENT_TIMESTAMP
+\f0\i0 \cf4 ,\
+    \cf2 foreign key \cf4 (\cf5 user_id\cf4 ) \cf2 references \cf4 users(\cf5 id\cf4 )\
+);\
+\cf2 insert into \cf4 orders \cf2 value \cf4 (\cf6 1 \cf4 , \cf6 1 \cf4 ,\cf7 'start' \cf4 , 
+\f1\i \cf10 CURRENT_TIMESTAMP
+\f0\i0 \cf4 );\
+\cf2 insert into \cf4 orders (\cf5 id\cf4 , \cf5 user_id\cf4 , \cf5 status \cf4 , \cf5 created_at\cf4 )\cf2 value \cf4 (\cf6 2 \cf4 , \cf6 2 \cf4 ,\cf7 'finish'\cf4 , 
+\f1\i \cf10 CURRENT_TIMESTAMP 
+\f0\i0 \cf4 );\
+\cf2 update  \cf4 orders \cf2 set \cf5 status \cf4 = \cf7 'start' \cf2 where \cf5 id\cf4 =\cf6 2\cf4 ;\
+\
+\cf2 select \cf8 * \cf2 from \cf4 orders ;\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf9 #----------------------------------------------------------------------\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf2 create table \cf4 order_products(\
+\cf5 order_id \cf2 int    \cf4 ,\
+\cf5 product_id \cf2 int  \cf4 ,\
+    \cf5 quantity \cf2 int default \cf6 0 \cf4 ,\
+    \cf2 PRIMARY KEY \cf4 (\cf5 order_id \cf4 ,\cf5 product_id \cf4 ),\
+    \cf2 foreign key \cf4 (\cf5 order_id\cf4 ) \cf2 references \cf4 orders(\cf5 id\cf4 ),\
+    \cf2 foreign key \cf4 (\cf5 product_id\cf4 )\cf2 references \cf4 products(\cf5 id\cf4 )\
+);\
+\
+\cf2 insert into \cf4 order_products(\cf5 order_id\cf4 , \cf5 product_id \cf4 ,\cf5 quantity\cf4 ) \cf2 values\cf4 (\cf6 1 \cf4 , \cf6 1 \cf4 , \cf6 3\cf4 );\
+\cf2 update \cf4 order_products \cf2 set \cf5 quantity \cf4 = \cf6 5 \cf2 where \cf5 product_id\cf4 = \cf6 1\cf4 ;\
+\cf2 select \cf8 * \cf2 from \cf4 order_products;\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf9 #----------------------------------------------------------------------\
+\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf2 create table \cf4 products(\
+    \cf5 id \cf2 int primary key \cf4 ,\
+    \cf5 name \cf2 varchar\cf4 (\cf6 10\cf4 )\cf2 not null \cf4 ,\
+    \cf5 price \cf2 int default \cf6 0\cf4 ,\
+    \cf5 status \cf2 varchar\cf4 (\cf6 10\cf4 )\cf2 check \cf4 ( \cf5 status\cf4 =\cf7 'valid' \cf2 or \cf5 status\cf4 =\cf7 'expired' \cf4 ),\
+    \cf5 created_at \cf2 datetime default 
+\f1\i \cf10 CURRENT_TIMESTAMP\
+
+\f0\i0 \cf4 );\
+\
+\cf2 insert into \cf4 products \cf2 value \cf4 (\cf6 1 \cf4 , \cf7 'iphone' \cf4 , \cf6 5000 \cf4 ,\cf7 'expired' \cf4 , 
+\f1\i \cf10 CURRENT_TIMESTAMP 
+\f0\i0 \cf4 );\
+\cf2 insert into \cf4 products \cf2 value \cf4 (\cf6 2 \cf4 , \cf7 'AAAA' \cf4 , \cf6 3000 \cf4 ,\cf7 'valid' \cf4 , 
+\f1\i \cf10 CURRENT_TIMESTAMP 
+\f0\i0 \cf4 );\
+\cf2 update \cf4 products \cf2 set \cf5 name\cf4 = \cf7 'galaxy' \cf2 where \cf5 id \cf4 =\cf6 2\cf4 ;\
+\cf2 select \cf8 * \cf2 from \cf4 products;\
+\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf9 #----------------------------------------------------------------------\
+\
+\
+\pard\tqr\tx720\tqr\tx1440\tqr\tx2160\tqr\tx2880\tqr\tx3600\tqr\tx4320\tqr\tx5040\tqr\tx5760\tqr\tx6480\tqr\tx7200\tqr\tx7920\tqr\tx8640\pardirnatural\partightenfactor0
+\cf2 delete from \cf4 products \cf2 where \cf5 id \cf4 =\cf6 2\cf4 ;\
+\cf2 delete from \cf4 orders \cf2 where \cf5 id\cf4 =\cf6 2\cf4 ;\
+}
