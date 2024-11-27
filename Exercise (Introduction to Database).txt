@@ -1,0 +1,91 @@
+create database store;
+
+create table countries(
+    code int primary key ,
+    name varchar(20) not null unique ,
+    continent_name varchar(20)not null
+);
+
+insert  into countries values (1 , 'essa' , 'saudi');
+update  countries set name = 'obaid ' where code=1;
+
+select * from countries ;
+#----------------------------------------------------------------------
+
+create table users(
+    id int primary key ,
+    full_name varchar(20) not null ,
+    email varchar(20) not null unique ,
+    gender varchar(1) check ( gender='m' or gender='f' ) ,
+    date_of_birth varchar(15) not null ,
+    created_at datetime DEFAULT CURRENT_TIMESTAMP,
+    country_code int ,
+    foreign key (country_code) references countries(code)
+);
+
+insert into users value (1,'essa almutiri' , 'essa@hotmail.com','m','2000/03/15',CURRENT_TIMESTAMP,1 );
+insert into users (id, full_name, email, gender,date_of_birth, created_at, country_code)value (2,'essa almutiri' , 'essa1@hotmail.com','m','1990/05/15', CURRENT_TIMESTAMP,1 );
+update  users set full_name = 'obaid almutiri' where id=2;
+
+
+select * from users ;
+#----------------------------------------------------------------------
+create table orders(
+    id int primary key ,
+    user_id int ,
+    status varchar(6) check ( status='start' or status='finish' )  ,
+    created_at datetime default CURRENT_TIMESTAMP,
+    foreign key (user_id) references users(id)
+);
+insert into orders value (1 , 1 ,'start' , CURRENT_TIMESTAMP);
+insert into orders (id, user_id, status , created_at)value (2 , 2 ,'finish', CURRENT_TIMESTAMP );
+update  orders set status = 'start' where id=2;
+
+select * from orders ;
+#----------------------------------------------------------------------
+create table order_products(
+order_id int    ,
+product_id int  ,
+    quantity int default 0 ,
+    PRIMARY KEY (order_id ,product_id ),
+    foreign key (order_id) references orders(id),
+    foreign key (product_id)references products(id)
+);
+
+insert into order_products(order_id, product_id ,quantity) values(1 , 1 , 3);
+update order_products set quantity = 5 where product_id= 1;
+select * from order_products;
+#----------------------------------------------------------------------
+
+create table products(
+    id int primary key ,
+    name varchar(10)not null ,
+    price int default 0,
+    status varchar(10)check ( status='valid' or status='expired' ),
+    created_at datetime default CURRENT_TIMESTAMP
+);
+
+insert into products value (1 , 'iphone' , 5000 ,'expired' , CURRENT_TIMESTAMP );
+insert into products value (2 , 'AAAA' , 3000 ,'valid' , CURRENT_TIMESTAMP );
+update products set name= 'galaxy' where id =2;
+select * from products;
+
+#----------------------------------------------------------------------
+
+
+delete from products where id =2;
+delete from orders where id=2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
